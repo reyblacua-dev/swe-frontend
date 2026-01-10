@@ -16,7 +16,7 @@ export function CharaterCard(character:Character) {
                     <h4>{character.name}</h4>
                     <div>
                         <p>Species: {character.species && character.species}</p>
-                        <p>Origin: {character.origin && character.origin.name}</p>
+                        <p>Location: {character.location && character.location.name}</p>
                     </div>
 
                 </div>
