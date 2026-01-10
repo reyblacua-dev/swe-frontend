@@ -1,8 +1,5 @@
 
-export interface Location{
-    name: string;
-    url: string;
-}
+import type { Location } from "./Location";
 
 export interface Character{
     id: number;
@@ -10,9 +7,9 @@ export interface Character{
     species: string;
     origin: Location;
     image: string;
-    state: string;
+    status: string;
     type: string;
     gender: string;
     location: Location;
-    
+
 }
