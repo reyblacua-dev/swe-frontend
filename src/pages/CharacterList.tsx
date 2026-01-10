@@ -12,10 +12,10 @@ function CharacterList() {
   useEffect(()=>{
     fetch(API)
     .then(res=>{  
-      if (!res.ok) throw new Error("Error fetching data"); 
-     let result =res.json();
-      console.log(result);
-     return result;
+        if (!res.ok) throw new Error("Error fetching data"); 
+        let result =res.json();
+        console.log(result);
+        return result;
     }
     ).then(data=> setCharacters(data.results))
     .catch(err=>console.log(err))
