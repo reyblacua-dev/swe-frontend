@@ -1,0 +1,23 @@
+
+
+.search-inputs{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.search-inputs input{
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.error-message{
+    color: red;
+    margin-top: 1rem;
+}

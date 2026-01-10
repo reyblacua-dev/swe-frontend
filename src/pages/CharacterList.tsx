@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { CharaterCard } from '../character/CharacterCard';
 import type { Character } from '../interfaces/Character';
 import '../App.css';
+import CharaterSearch from '../character/CharacterSearch';
 
 function CharacterList() {
 
@@ -14,7 +15,6 @@ function CharacterList() {
     .then(res=>{  
         if (!res.ok) throw new Error("Error fetching data"); 
         let result =res.json();
-        console.log(result);
         return result;
     }
     ).then(data=> setCharacters(data.results))
@@ -22,9 +22,15 @@ function CharacterList() {
   
   },[]);
 
+  const handleResults = (characters: Character[]) => {
+    setCharacters(characters);
+  };
+
   return (
     <>
-      <h1>Personajes de Ricky Morty</h1>
+      <h1>Ricky Morty's Characters</h1>
+      
+      <CharaterSearch onResultsFound={handleResults}/>
 
       <div>
       {characters && characters.map(character => (
