@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# 1. Instrucciones para ejecutar el proyecto.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para ejecutar el proyecto se deben seguir los siguinetes pasos:
 
-Currently, two official plugins are available:
+En la terminal ejecutar:
+- `npm install` -> Para instalar todos los paquetes necesarios
+- `npm run dev` -> Para ejecutar la aplicación en modo desarrollador
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 2. Breve descripción de la arquitectura y decisiones técnicas tomadas.
 
-## React Compiler
+En la carpeta src encontramos la estructura del proyecto. En esta encontramos las siguientes carpetas:
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+**src/**
+- **api/** : Se encuentra la definiciñon de las rutas y las peticiones a la API
+- **assets/** : Se encuentran los archivos estáticos, en este caso se encuentra vacío porque no se han necesitado imágenes adicionales
+- **components/** : Se encuentran los componentes reutilizables como pueden ser las fichas de usuarios, la sección de comentarios, la búsqueda o la ficha de un comentario.
+- **context/**: Se encuentran las definiciones de contexto para gestionar el estado global de la aplicación. En este caso solo ha sido necesario para la gestión de los comentarios de los personajes guardando la información en el localstorage.
+- **interfaces/**: Definiciones de las interfaces de los distintos objetos que se van a tratar en la aplicación.
+- **views/**: Definiciones de las vistas de la aplicación, en este caso el listado de personajes y el detalle de uno.
+- **App.tsx** : En este archivo se encuentra el enrutador con las direcciones correspondientes a cada vista
 
-## Expanding the ESLint configuration
+He dividido la forma de representar los personajes y comentarios en componentes para facilitar la integraciñon de esta información en otras vistas. En el caso del card de personaje se usa tanto en la vista de listado como en el listado de residentes del mismo planeta en el detalle de personaje individual.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Para el caso del comentario, se usa tanto en el detalle del personaje como en cada card individual del listado general y de residentes.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Para la búsqueda se ha usado el mismo criterio. En el caso actual solo se usa dentro del listado general pero también se podría añadir al listado de residentes.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Para la definición de las llamadas de la API he optado por definirlas en un mismo fichero para simplificar y reutilizar la definiciñon de las llamadas lo máximo posible.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Dentro de cada carpeta de componente y vista se encuentra la definición del tsx como un archivos css con las clases implicadas en cada componente.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# 3. Indica qué mejoras o extensiones implementarías con más tiempo (tanto funcionales como técnicas /arquitecturales).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Algunas mejoras funcionales serían:**
+- Añadir paginación a los listados
+- Añadir listado de capítulos de la serie
+- Añadir vista de un capítulo concreto
+- Cuando se acceda a un capítulo añadir el listado de personajes que aparecen en el capítulo
+- Añadir autenticación a la aplicación 
+- Limitar el acceso a ciertas vistas según el rol del usuario si así se requiere
+- Añadir los estilos para permitir activar un modo claro (actualmente la web está solo en modo oscuro)
+- Mejorar el web responsive de la página
+- Añadir personajes a favoritos
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**En cuanto a mejoras técnicas y arquitecturales:**
+- Tratar mensajes de error, ahora mismo solo se muestra con console.log
+- Crear hooks para realizar el tratamiento de los datos obtenidos a través de la api y simplificar el código
+- Mejorar el rendimiento de las peticiones a la API añadiendo páginación
