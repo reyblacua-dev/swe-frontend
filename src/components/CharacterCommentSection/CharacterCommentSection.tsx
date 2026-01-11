@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useComments } from '../../providers/CharacterCommentProvider';
+import { useComments } from '../../contexts/CharacterCommentProvider';
 import { CommentCard } from '../Comment/CommentCard';
 import type { Character } from '../../interfaces/Character';
 import './CharacterCommentSection.css'
@@ -28,8 +28,7 @@ export default function CharacterCommentSection({ character }: { character: Char
             className='comment-textarea'
             />
             <button 
-            onClick={handleSave}
-            className='primary-button'>
+            onClick={handleSave}>
             {comments[character.id] ? 'Update Comment' : 'Publish'}
             </button>
         </div>

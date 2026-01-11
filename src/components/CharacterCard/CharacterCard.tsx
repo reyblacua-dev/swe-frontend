@@ -1,8 +1,9 @@
 import type { Character } from '../../interfaces/Character';
-import '../../App.css'
 import { Link } from 'react-router-dom';
 import { CommentCard } from '../Comment/CommentCard';
-import { useComments } from '../../providers/CharacterCommentProvider';
+import { useComments } from '../../contexts/CharacterCommentProvider';
+
+import './CharacterCard.css';
 
 export function CharaterCard(character:Character) {
     

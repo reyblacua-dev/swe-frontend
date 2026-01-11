@@ -1,27 +1,33 @@
 import { useEffect, useState } from 'react'
-import type { Character } from '../interfaces/Character';
-import type { Location } from '../interfaces/Location';
-import '../App.css';
+import type { Character } from '../../interfaces/Character';
+import type { Location } from '../../interfaces/Location';
 import { useParams } from 'react-router-dom';
-import { CharaterCard } from '../services/CharacterCard/CharacterCard';
-import CharacterCommentSection from '../services/CharacterCommentSection/CharacterCommentSection';
+import { CharaterCard } from '../../components/CharacterCard/CharacterCard';
+import CharacterCommentSection from '../../components/CharacterCommentSection/CharacterCommentSection';
+import { characterApi } from '../../api/characterApi';
+
+import './CharacterDetail.css';
 
 function CharacterDetail() {
     const { id } = useParams<{ id: string }>();
-
-    const API = `https://rickandmortyapi.com/api/character/${id}`;  
 
     const [character, setCharacter] = useState<Character>({} as Character);
     const [location, setLocation] = useState<Location>({} as Location);
     const [residents, setResidents] = useState<Character[]>([]);
 
     useEffect(()=>{
-      fetch(API)
-      .then(res=>{ 
-        if (!res.ok) throw new Error("Error fetching data");
-        return res.json();
-      }).then(data =>setCharacter(data))
-      .catch(error =>console.log(error))},[id])
+        if (!id) throw new Error("Error fetching data");
+        const fetchOneCharacter = async () => {
+            try{
+                let result = await characterApi.getCharacterByIds(id);
+                setCharacter(result);
+            }catch(error){  
+                console.log("Error fetching character by ID:", error);        
+            }
+        }
+
+        fetchOneCharacter();
+        },[id])
 
 
     useEffect(()=>{
@@ -38,14 +44,19 @@ function CharacterDetail() {
     useEffect(()=>{
         if(location.residents){
             const ids = location.residents.map(url => url.split('/').pop()).join(',');
-            fetch(`https://rickandmortyapi.com/api/character/${ids}`).then(res=>{
-                if (!res.ok) throw new Error("Error fetching data");
-                return res.json();
-            }).then(data=>{
-                setResidents(data);
-            })
-            .catch(error =>console.log(error))  
-        } },[location])
+
+            const fetchCharacters = async () => {
+                try{
+                    let results = await characterApi.getCharacterByIds(ids);
+                    setResidents(results);
+                }catch(error){  
+                    console.log("Error fetching character by ID:", error);        
+                }
+            }
+
+            fetchCharacters();
+        } 
+    },[location])
 
     return (
         <>
@@ -69,7 +80,7 @@ function CharacterDetail() {
 
         <CharacterCommentSection character={character} />
 
-        <h3>Residents</h3>
+        <h2>Residents</h2>
         <div className='resident-list'>
             {residents && residents.map(character => (
                     character.id.toString()!=id && <CharaterCard key={character.id} {...character} />
