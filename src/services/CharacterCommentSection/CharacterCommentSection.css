@@ -1,0 +1,25 @@
+
+.comment-textarea {
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    color: black;
+    width: 50%;
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap:1rem;
+        
+}
+
+.comment-card{
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;}

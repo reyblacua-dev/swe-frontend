@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { CharaterCard } from '../character/CharacterCard';
+import { CharaterCard } from '../services/CharacterCard/CharacterCard';
 import type { Character } from '../interfaces/Character';
 import '../App.css';
-import CharaterSearch from '../character/CharacterSearch';
+import CharaterSearch from '../services/CharacterSearch/CharacterSearch';
 
 function CharacterList() {
 

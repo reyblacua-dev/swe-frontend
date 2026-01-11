@@ -52,3 +52,12 @@
   text-decoration: none;
   color: inherit;
 }
+
+.primary-button{
+  width: fit-content;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  padding: 10px 20px 10px 20px;
+}
