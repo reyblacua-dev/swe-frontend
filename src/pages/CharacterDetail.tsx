@@ -3,7 +3,8 @@ import type { Character } from '../interfaces/Character';
 import type { Location } from '../interfaces/Location';
 import '../App.css';
 import { useParams } from 'react-router-dom';
-import { CharaterCard } from '../character/CharacterCard';
+import { CharaterCard } from '../services/CharacterCard/CharacterCard';
+import CharacterCommentSection from '../services/CharacterCommentSection/CharacterCommentSection';
 
 function CharacterDetail() {
     const { id } = useParams<{ id: string }>();
@@ -65,6 +66,9 @@ function CharacterDetail() {
                 </div> 
             </div>
         </div>
+
+        <CharacterCommentSection character={character} />
+
         <h3>Residents</h3>
         <div className='resident-list'>
             {residents && residents.map(character => (

@@ -1,9 +1,12 @@
-import type { Character } from '../interfaces/Character';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css'
+import type { Character } from '../../interfaces/Character';
+import '../../App.css'
 import { Link } from 'react-router-dom';
+import { CommentCard } from '../Comment/CommentCard';
+import { useComments } from '../../providers/CharacterCommentProvider';
 
 export function CharaterCard(character:Character) {
+    
+    const { comments, addComment } = useComments();
 
     return (
     <>
@@ -17,6 +20,7 @@ export function CharaterCard(character:Character) {
                     <div>
                         <p>Species: {character.species && character.species}</p>
                         <p>Location: {character.location && character.location.name}</p>
+                        <CommentCard comment={comments[character.id]? comments[character.id]:"No comments yet"} />
                     </div>
 
                 </div>

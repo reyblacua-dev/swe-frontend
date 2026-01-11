@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './CharacterSearch.css';
-import type { Character } from '../interfaces/Character';
+import type { Character } from '../../interfaces/Character';
 
 const  CharaterSearch = ({ onResultsFound }: { onResultsFound: (results: Character[]) => void }) => {
 
