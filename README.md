@@ -1,4 +1,6 @@
 # 1. Instrucciones para ejecutar el proyecto.
+Requisitos:
+    Instalar o tener instalado node.js (versión usada: 11.6.2)
 
 Para ejecutar el proyecto se deben seguir los siguinetes pasos:
 
@@ -19,7 +21,7 @@ En la carpeta src encontramos la estructura del proyecto. En esta encontramos la
 - **views/**: Definiciones de las vistas de la aplicación, en este caso el listado de personajes y el detalle de uno.
 - **App.tsx** : En este archivo se encuentra el enrutador con las direcciones correspondientes a cada vista
 
-He dividido la forma de representar los personajes y comentarios en componentes para facilitar la integraciñon de esta información en otras vistas. En el caso del card de personaje se usa tanto en la vista de listado como en el listado de residentes del mismo planeta en el detalle de personaje individual.
+He dividido la forma de representar los personajes y comentarios en componentes para facilitar la integración de esta información en otras vistas. En el caso del card de personaje se usa tanto en la vista de listado como en el listado de residentes del mismo planeta en el detalle de personaje individual.
 
 Para el caso del comentario, se usa tanto en el detalle del personaje como en cada card individual del listado general y de residentes.
 
@@ -41,8 +43,10 @@ Dentro de cada carpeta de componente y vista se encuentra la definición del tsx
 - Añadir los estilos para permitir activar un modo claro (actualmente la web está solo en modo oscuro)
 - Mejorar el web responsive de la página
 - Añadir personajes a favoritos
+- Añadir página de redirección de 404 con una página estática "La dirección a la que está intentando acceder no existe"
+- Añadir animaciones de carga (Actualmente solo aparece un texto "Cargando..." cuando se realiza una búsqueda por los tres parámetros establecidos: nombre, especie, planeta)
 
 **En cuanto a mejoras técnicas y arquitecturales:**
-- Tratar mensajes de error, ahora mismo solo se muestra con console.log
+- Tratar mensajes de error, ahora mismo solo se muestra con console.log en la consola del navegador. Sería conveniente que si se produce un error en la petición el usuario esté informado.
 - Crear hooks para realizar el tratamiento de los datos obtenidos a través de la api y simplificar el código
 - Mejorar el rendimiento de las peticiones a la API añadiendo páginación
