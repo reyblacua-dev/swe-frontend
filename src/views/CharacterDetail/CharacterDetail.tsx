@@ -78,7 +78,7 @@ function CharacterDetail() {
             </div>
         </div>
 
-        <CharacterCommentSection character={character} />
+        <CharacterCommentSection key={character.id}  character={character} />
 
         <h2>Residents</h2>
         <div className='resident-list'>
