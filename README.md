@@ -7,6 +7,7 @@ Para ejecutar el proyecto se deben seguir los siguientes pasos:
 En la terminal ejecutar:
 - `npm install` -> Para instalar todos los paquetes necesarios.
 - `npm run dev` -> Para ejecutar la aplicación en modo desarrollador.
+- Acceder a la url http://localhost:5173/
 
 # 2. Breve descripción de la arquitectura y decisiones técnicas tomadas.
 
