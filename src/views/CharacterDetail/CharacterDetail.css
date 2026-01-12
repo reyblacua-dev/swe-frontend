@@ -1,0 +1,27 @@
+.detailed-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  text-align: justify;
+}
+
+.detailed-card img {
+  border-radius: 8px;
+  margin-right: 1rem;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+.resident-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.resident-list .noStyledLink{
+  flex: 1 1 calc(33% - 1rem);
+ }
